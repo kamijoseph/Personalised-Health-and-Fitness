@@ -1,8 +1,4 @@
 pandas
-numpy
 streamlit
 xgboost
 joblib
-matplotlib.pyplot as plt
-seaborn as sns
-scikit-learn
