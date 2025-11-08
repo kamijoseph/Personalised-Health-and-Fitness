@@ -7,10 +7,23 @@ import numpy as np
 import joblib
 from xgboost import XGBClassifier
 
-# Load model & scaler
-model = joblib.load("best_model.pkl")
-scaler = joblib.load("scaler.pkl")
-encoder = joblib.load()
+# loading resources
+@st.cache_resource
+def load_resources():
+    # loading encoder
+    encoder = joblib.load("app/../resources/encoder.pkl")
+    
+    # laoding scaler
+    scaler = joblib.load("app/../resources/scaler.pkl")
+
+    # loading model
+    model = XGBClassifier()
+    model.load_model("app/../resources/fitness_model.json")
+
+    return encoder, scaler, model
+
+# encoder, scaler and model
+encoder, scaler, model = load_resources()
 
 st.title("Personalized Health Recommendation System")
 
